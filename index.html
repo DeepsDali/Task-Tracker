@@ -24,15 +24,30 @@
             required
             placeholder="Enter new task"
           />
-          <select id="task-category">
+          <!-- <select id="task-category">
             <option value="work">Work</option>
             <option value="personal">Personal</option>
-          </select>
+          </select> -->
           <button type="submit" id="submit-btn" class="btn">+</button>
         </form>
       </section>
-      <section id="filterTasks-section" class="filter-tasks"></section>
-      <section id="displayTasks-section" class="display-tasks"></section>
+      <section id="filterTasks-section" class="filter-tasks">
+        <!-- <select id="task-category">
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+          </select> -->
+        <button class="big-btn">Pending Tasks</button>
+        <h2>Pending tasks: <span> (Num)</span></h2>
+      </section>
+      <section id="displayTasks-section" class="display-tasks">
+        <div id="task-list" class="tasks">
+          <input type="checkbox" name="checkbox" id="checkbox" class="check" />
+          <label for="checkbox" class="checkbox">Task info</label>
+          <button class="btn">&#9998;</button>
+          <button class="btn">&#128465;</button>
+        </div>
+        <button class="big-btn">Clear Tasks</button>
+      </section>
     </main>
     <script type="module" src="./script.js"></script>
   </body>
