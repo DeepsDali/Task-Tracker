@@ -10,12 +10,12 @@
     <title>Task Tracker</title>
   </head>
   <body>
-    <header>
+    <header class="center">
       <h1><span>T</span>ask <span>T</span>racker</h1>
     </header>
     <main>
-      <section id="addTasks-section" class="create-tasks">
-        <form action="" method="POST" id="form" class="task-form">
+      <section id="addTasks-section" class="create-tasks stack-lg center">
+        <form action="" method="POST" id="form" class="task-form stack-lg">
           <label for="addTask"></label>
           <input
             id="addTask"
@@ -31,16 +31,18 @@
           <button type="submit" id="submit-btn" class="btn">+</button>
         </form>
       </section>
-      <section id="filterTasks-section" class="filter-tasks">
+      <section id="filterTasks-section" class="filter-tasks center">
         <!-- <select id="task-category">
             <option value="work">Work</option>
             <option value="personal">Personal</option>
           </select> -->
-        <button class="big-btn">Pending Tasks</button>
-        <h2>Pending tasks: <span> (Num)</span></h2>
+        <div id="filter-div" class="filters stack-lg">
+          <button class="big-btn">Pending Tasks</button>
+          <h2>Pending tasks: <span> (Num)</span></h2>
+        </div>
       </section>
-      <section id="displayTasks-section" class="display-tasks">
-        <div id="task-list" class="tasks">
+      <section id="displayTasks-section" class="display-tasks center">
+        <div id="task-list" class="tasks stack-lg">
           <input type="checkbox" name="checkbox" id="checkbox" class="check" />
           <label for="checkbox" class="checkbox">Task info</label>
           <button class="btn">&#9998;</button>
