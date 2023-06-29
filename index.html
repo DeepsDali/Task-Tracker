@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Task Tracker</title>
+  </head>
+  <body>
+    <header class="center">
+      <h1><span>T</span>ask <span>T</span>racker</h1>
+    </header>
+    <main>
+      <section id="addTasks-section" class="create-task stack-lg center">
+        <form action="" method="POST" id="form" class="task-form stack-lg row">
+          <label for="addTask"></label>
+          <input
+            id="addTask"
+            name="addTask"
+            type="text"
+            required
+            placeholder="Enter new task"
+          />
+          <!-- <select id="task-category">
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+          </select> -->
+          <button type="submit" id="submit-btn" class="btn row">+</button>
+        </form>
+      </section>
+      <section id="filterTasks-section" class="filter-tasks center stack-lg">
+        <!-- <select id="task-category">
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+          </select> -->
+        <!-- <div id="filter-div" class="filters stack-lg">
+          <h2>Pending tasks: <span> (Num)</span></h2>
+          <button class="big-btn">Pending Tasks</button>
+        </div> -->
+      </section>
+      <section id="displayTasks-section" class="display-tasks center">
+        <div id="task-list" class="tasks stack-md row center">
+          <input
+            type="checkbox"
+            name="checkbox"
+            id="checkbox"
+            class="checkbox"
+          />
+          <label for="checkbox" class="checkbox-label">Task info</label>
+          <button class="btn">&#9998;</button>
+          <button class="btn">&#128465;</button>
+        </div>
+        <!-- <button class="big-btn">Clear Tasks</button> -->
+      </section>
+    </main>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
