@@ -23,7 +23,8 @@ export const addEventListener = () => {
     label.className = "checkbox-label";
     label.textContent = inputValue;
 
-    editButton.className = "btn";
+    // editButton.className = "btn";
+    editButton.classList.add("btn","editbtn");
     editButton.innerHTML = "&#9998;";
 
     // deleteButton.className = "btn";
