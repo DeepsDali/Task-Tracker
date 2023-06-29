@@ -5,7 +5,7 @@ export const editTask = () => {
         openEditor));  // removes parent element (taking children with it) on button press
 }
 
-function openEditor() {
+function openEditor() {  // opens text editor and changes buttons // could do with refactor fair bit of repetition
     const parent = event.target.parentElement;
     const label = parent.querySelector(".checkbox-label");
     // buttons
@@ -15,38 +15,34 @@ function openEditor() {
     // button swap
     acceptEdit.innerHTML = "&#10003";
     acceptEdit.classList.toggle("editbtn");
-    parent.replaceChild(acceptEdit,editBtn);
     const cancelBtn = delBtn.cloneNode();
     cancelBtn.innerHTML = "&#10060";
-    cancelBtn.classList.add("canceledit");
-    cancelBtn.classList.toggle("delbtn");
-    parent.replaceChild(cancelBtn,delBtn);
-
+    cancelBtn.classList.toggle("delbtn");    
     // define text input
     const editInput = document.createElement("input");
     editInput.classList.add("edittext");
     editInput.type = "text";
     editInput.value = label.textContent;
     editInput.placeholder = label.textContent;
-    // swap in text input
-    parent.replaceChild(editInput,label);
 
-    const btnArr = [[acceptEdit,editBtn],[cancelBtn,delBtn]];
+    nodeSwap(parent,[[editInput,label],[acceptEdit,editBtn],[cancelBtn,delBtn]]);
+    // event listeners for accept changes and cancel changes
+    const nodeArr = [[label,editInput],[editBtn,acceptEdit],[delBtn,cancelBtn]];
     acceptEdit.addEventListener("click", e => {
-        closeEditor(true,label,btnArr);
+        closeEditor(true,nodeArr);
     });
     cancelBtn.addEventListener("click", e => {
-        closeEditor(false,label,btnArr);
+        closeEditor(false,nodeArr);
     })
 }
 
-function closeEditor(acceptChanges,label,btnArr) {
-    const parent = event.target.parentElement;
-    const editInput = parent.querySelector(".edittext")    
+function closeEditor(acceptChanges,nodeArr) {
+    const parent = event.target.parentElement;  
+    if (acceptChanges) nodeArr[0][0].textContent = nodeArr[0][1].value;
+    else nodeArr[0][0].textContent = nodeArr[0][1].placeholder;
+    nodeSwap(parent,nodeArr);
+}
 
-    if (acceptChanges) label.textContent = editInput.value;
-    else label.textContent = editInput.placeholder;
-
-    parent.replaceChild(label,editInput);
-    btnArr.forEach(e => parent.replaceChild(e[1],e[0]))
+function nodeSwap(parent,nodeArr) {
+    nodeArr.forEach(e => parent.replaceChild(e[0],e[1]));
 }
