@@ -11,5 +11,22 @@ export const addEventListener = () => {
     const label = document.createElement("label");
     const editButton = document.createElement("button");
     const deleteButton = document.createElement("button");
+
+    // Set attributes and content
+    checkbox.type = "checkbox";
+    checkbox.name = "checkbox";
+    checkbox.id = "checkbox";
+    checkbox.className = "checkbox";
+    taskItem.className = "task-item stack-md row center";
+
+    label.htmlFor = "checkbox";
+    label.className = "checkbox-label";
+    label.textContent = inputValue;
+
+    editButton.className = "btn";
+    editButton.innerHTML = "&#9998;";
+
+    deleteButton.className = "btn";
+    deleteButton.innerHTML = "&#128465;";
   });
 };
