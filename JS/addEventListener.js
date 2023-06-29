@@ -26,7 +26,9 @@ export const addEventListener = () => {
     editButton.className = "btn";
     editButton.innerHTML = "&#9998;";
 
-    deleteButton.className = "btn";
+    // deleteButton.className = "btn";
+    // deleteButton.className = "delbtn";
+    deleteButton.classList.add("btn","delbtn");
     deleteButton.innerHTML = "&#128465;";
     // Append elements to the task item div
     taskItem.appendChild(checkbox);
