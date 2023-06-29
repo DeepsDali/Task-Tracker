@@ -28,5 +28,16 @@ export const addEventListener = () => {
 
     deleteButton.className = "btn";
     deleteButton.innerHTML = "&#128465;";
+    // Append elements to the task item div
+    taskItem.appendChild(checkbox);
+    taskItem.appendChild(label);
+    taskItem.appendChild(editButton);
+    taskItem.appendChild(deleteButton);
+
+    // Append the task item div to the task list
+    taskList.appendChild(taskItem);
+
+    // Clear the input field
+    document.getElementById("addTask").value = "";
   });
 };
