@@ -8,5 +8,8 @@ function openEditor() {
     const parent = event.target.parentElement;
     const label = parent.querySelector(".checkbox-label")
     console.log("here",{parent},label.textContent)
-    
+    const editInput = document.createElement("input");
+    editInput.type = "text";
+    editInput.value = label.textContent;
+    parent.replaceChild(editInput,label);
 }
