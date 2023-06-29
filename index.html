@@ -14,8 +14,8 @@
       <h1><span>T</span>ask <span>T</span>racker</h1>
     </header>
     <main>
-      <section id="addTasks-section" class="create-tasks stack-lg center">
-        <form action="" method="POST" id="form" class="task-form stack-lg">
+      <section id="addTasks-section" class="create-task stack-lg center">
+        <form action="" method="POST" id="form" class="task-form stack-lg row">
           <label for="addTask"></label>
           <input
             id="addTask"
@@ -28,27 +28,32 @@
             <option value="work">Work</option>
             <option value="personal">Personal</option>
           </select> -->
-          <button type="submit" id="submit-btn" class="btn">+</button>
+          <button type="submit" id="submit-btn" class="btn row">+</button>
         </form>
       </section>
-      <section id="filterTasks-section" class="filter-tasks center">
+      <section id="filterTasks-section" class="filter-tasks center stack-lg">
         <!-- <select id="task-category">
             <option value="work">Work</option>
             <option value="personal">Personal</option>
           </select> -->
-        <div id="filter-div" class="filters stack-lg">
-          <button class="big-btn">Pending Tasks</button>
+        <!-- <div id="filter-div" class="filters stack-lg">
           <h2>Pending tasks: <span> (Num)</span></h2>
-        </div>
+          <button class="big-btn">Pending Tasks</button>
+        </div> -->
       </section>
       <section id="displayTasks-section" class="display-tasks center">
-        <div id="task-list" class="tasks stack-lg">
-          <input type="checkbox" name="checkbox" id="checkbox" class="check" />
-          <label for="checkbox" class="checkbox">Task info</label>
+        <div id="task-list" class="tasks stack-md row center">
+          <input
+            type="checkbox"
+            name="checkbox"
+            id="checkbox"
+            class="checkbox"
+          />
+          <label for="checkbox" class="checkbox-label">Task info</label>
           <button class="btn">&#9998;</button>
           <button class="btn">&#128465;</button>
         </div>
-        <button class="big-btn">Clear Tasks</button>
+        <!-- <button class="big-btn">Clear Tasks</button> -->
       </section>
     </main>
     <script type="module" src="./script.js"></script>
