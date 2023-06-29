@@ -15,7 +15,7 @@ function openEditor() {
     editInput.value = label.textContent;
     parent.replaceChild(editInput,label);
     event.target.innerHTML = "&#10003";
-    event.target.classList.toggle("editbtn")
+    event.target.classList.toggle("editbtn")  // this should not be needed but because im accessing this file with setInterval the eventlistener gets added back automatically can remove once integrated in script properly
     event.target.removeEventListener("click",openEditor);
     event.target.addEventListener("click",closeEditor)
 }
@@ -30,7 +30,7 @@ function closeEditor() {
     label.textContent = editInput.value;
     parent.replaceChild(label,editInput);
     event.target.innerHTML = "&#9998";
-    event.target.classList.toggle("editbtn")
+    event.target.classList.toggle("editbtn")  // this should not be needed but because im accessing this file with setInterval the eventlistener gets added back automatically can remove once integrated in script properly
     event.target.removeEventListener("click",closeEditor);
     event.target.addEventListener("click",openEditor)
 }
