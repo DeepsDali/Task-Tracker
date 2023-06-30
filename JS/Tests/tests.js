@@ -1,5 +1,6 @@
 import { addTask } from "../addTask.js";
 import { removeTask } from "../deleteTask.js";
+import { editTask } from "../editTask.js";
 
 // addTask Test
 
@@ -10,7 +11,7 @@ test("Add button creates a new task on the Task List", () => {
   const taskItem = taskList.querySelector(".task-item");
   const label = taskItem.querySelector("label");
   console.log(label);
-  // taskItem.style.display = "none";
+  taskItem.style.display = "none";
   equal(
     label.textContent,
     "Wash the car",
@@ -39,4 +40,101 @@ test("removeTask removes the parent element of button when pressed", () => {
   )
 });
 // editTask Test
+
+test("openEditor should replace checkbox label with an input of type text", () => {
+  const textString = "open editor test"
+  const taskList = document.getElementById("task-list");
+  document.getElementById("addTask").value = textString;
+  addTask();  // adds new task to task list
+  const editDiv = [...document.getElementsByTagName("label")].filter(label => label.innerText == textString)[0].parentElement;  // find the new task div
+  editTask(); // init remove task
+  editDiv.querySelector(".editbtn").click();  // simulate click on edit button
+  const editCheck = editDiv.querySelector(".edittext").type; // check type of checkbox label
+  equal(
+    editCheck,
+    "text",
+    `When editor opened expect element type "text", received "${editCheck}"`
+  )
+  editDiv.remove();
+})
+
+test("openEditor should replace buttons with editor related ones", () => {
+  const textString = "editor button check"
+  const taskList = document.getElementById("task-list");
+  document.getElementById("addTask").value = textString;
+  addTask();  // adds new task to task list
+  const editDiv = [...document.getElementsByTagName("label")].filter(label => label.innerText == textString)[0].parentElement;  // find the new task div
+  editTask(); // init remove task
+  editDiv.querySelector(".editbtn").click();  // simulate click on edit button
+  const [acceptButton, cancelButton] = editDiv.querySelectorAll("button");
+  equal(
+    acceptButton.innerHTML,
+    "✓",
+    `New button should have value "✓", received "${acceptButton.innerHTML}"`
+  )
+  equal(
+    cancelButton.innerHTML,
+    "❌",
+    `New button should have value "❌", received "${cancelButton.innerHTML}"`
+  )
+  editDiv.remove();
+})
+
+test("closing editor should replace text input with a label", () => {
+  const textString = "close editor test"
+  const taskList = document.getElementById("task-list");
+  document.getElementById("addTask").value = textString;
+  addTask();  // adds new task to task list
+  const editDiv = [...document.getElementsByTagName("label")].filter(label => label.innerText == textString)[0].parentElement;  // find the new task div
+  editTask(); // init remove task
+  editDiv.querySelector(".editbtn").click();  // simulate click on edit button
+  editDiv.querySelector("button").click();
+  const editCheck = editDiv.querySelector(".checkbox-label").tagName; // check type of checkbox label
+  equal(
+    editCheck,
+    "LABEL",
+    `When editor opened expect element type "LABEL", received "${editCheck}"`
+  )
+  editDiv.remove();
+})
+
+test("accept changes button should replace text input with a label with value of newstring", () => {
+  const textString = "accept button editor test"
+  const newTextString = "changes accepted"
+  const taskList = document.getElementById("task-list");
+  document.getElementById("addTask").value = textString;
+  addTask();  // adds new task to task list
+  const editDiv = [...document.getElementsByTagName("label")].filter(label => label.innerText == textString)[0].parentElement;  // find the new task div
+  editTask(); // init remove task
+  editDiv.querySelector(".editbtn").click();  // simulate click on edit button
+  editDiv.querySelector(".edittext").value = newTextString; // check ype of checkbox label
+  editDiv.querySelector("button").click();
+  const editCheck = editDiv.querySelector(".checkbox-label").textContent; // check type of checkbox label
+  equal(
+    editCheck,
+    newTextString,
+    `When changes accepted label should have text content of "${newTextString}", received "${editCheck}"`
+  )
+  editDiv.remove();
+})
+
+test("cancel changes button should replace text input with a label with value of newstring", () => {
+  const textString = "cancel button editor test"
+  const newTextString = "new text string"
+  const taskList = document.getElementById("task-list");
+  document.getElementById("addTask").value = textString;
+  addTask();  // adds new task to task list
+  const editDiv = [...document.getElementsByTagName("label")].filter(label => label.innerText == textString)[0].parentElement;  // find the new task div
+  editTask(); // init remove task
+  editDiv.querySelector(".editbtn").click();  // simulate click on edit button
+  editDiv.querySelector(".edittext").value = newTextString; // check ype of checkbox label
+  editDiv.querySelectorAll("button")[1].click();
+  const editCheck = editDiv.querySelector(".checkbox-label").textContent; // check type of checkbox label
+  equal(
+    editCheck,
+    textString,
+    `When changes accepted label should have original text still of "${textString}", received "${editCheck}"`
+  )
+  editDiv.remove();
+})
 // filterTask Test
