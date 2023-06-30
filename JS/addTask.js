@@ -18,7 +18,7 @@ export const addTask = () => {
   label.className = "checkbox-label";
   label.textContent = inputValue;
 
-  editButton.classList.add("btn","editbtn");
+  editButton.className = "btn";
   editButton.innerHTML = "&#9998;";
 
   deleteButton.classList.add("btn", "delbtn");
