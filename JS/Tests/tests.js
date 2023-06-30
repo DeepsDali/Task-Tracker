@@ -13,7 +13,8 @@ test("Add button creates a new task on the Task List", () => {
   equal(
     label.textContent,
     "Wash the car",
-    "Label text content should be 'Wash the car'"
+    `Expected: ${label.textContent}, Recieved: Wash the car`
+    // "Label text content should be 'Wash the car'"
   );
 });
 
