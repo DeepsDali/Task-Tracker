@@ -56,6 +56,21 @@
 #task-category option:checked {
   cursor: pointer;
 }
+/* Date */
+#due-date {
+  font-size: 1em;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: var(--cream);
+  border: none;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--dark-grey);
+}
+
+#due-date:focus {
+  outline: none;
+}
 @media screen and (min-width: 760px) {
   .create-task input[type="text"] {
     color: var(--light-grey);
