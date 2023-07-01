@@ -6,7 +6,16 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1"
     />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./CSS/main.css" />
+    <link rel="stylesheet" href="./CSS/createTasks.css" />
+    <link rel="stylesheet" href="./CSS/filterTasks.css" />
+    <link rel="stylesheet" href="./CSS/listTasks.css" />
     <title>Task Tracker</title>
   </head>
   <body>
@@ -47,29 +56,12 @@
           </div>
         </form>
       </section>
-      <section id="filterTasks-section" class="filter-tasks center stack-lg">
-        <!-- <select id="task-category">
-            <option value="work">Work</option>
-            <option value="personal">Personal</option>
-          </select> -->
-        <!-- <div id="filter-div" class="filters stack-lg">
-          <h2>Pending tasks: <span> (Num)</span></h2>
-          <button class="big-btn">Pending Tasks</button>
-        </div> -->
-      </section>
+      <section
+        id="filterTasks-section"
+        class="filter-tasks center stack-lg"
+      ></section>
       <section id="displayTasks-section" class="display-tasks center">
-        <div id="task-list" class="tasks stack-md column center">
-          <!-- <input
-            type="checkbox"
-            name="checkbox"
-            id="checkbox"
-            class="checkbox"
-          />
-          <label for="checkbox" class="checkbox-label">Task info</label>
-          <button class="btn">&#9998;</button>
-          <button class="btn">&#128465;</button> -->
-        </div>
-        <!-- <button class="big-btn">Clear Tasks</button> -->
+        <div id="task-list" class="tasks stack-md column center"></div>
       </section>
     </main>
     <script type="module" src="./script.js"></script>
