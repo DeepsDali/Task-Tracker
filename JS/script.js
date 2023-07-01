@@ -1,6 +1,6 @@
-import { addTask } from "./JS/addTask.js";
-import { removeTask } from "./JS/deleteTask.js";
-import { editTask } from "./JS/editTask.js";
+import { addTask } from "./addTask.js";
+import { removeTask } from "./removeTask.js";
+import { editTask } from "./editTask.js";
 
 const form = document.getElementById("form");
 

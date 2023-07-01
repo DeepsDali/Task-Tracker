@@ -18,6 +18,14 @@ export const addTask = () => {
   label.className = "checkbox-label";
   label.textContent = inputValue;
 
+  // Set task item background
+  const taskCategorySelect = document.querySelector("#task-category");
+  const selectedOption = taskCategorySelect.value;
+  taskItem.style.backgroundColor =
+    selectedOption === "home"
+      ? "rgba(6, 67, 199, 0.317)"
+      : "rgba(57, 17, 79, 0.333)";
+  //Edit and Delete buttons
   editButton.classList.add("btn", "editbtn");
   editButton.innerHTML = "&#9998;";
 
