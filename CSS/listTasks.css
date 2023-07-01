@@ -36,6 +36,10 @@
   padding-bottom: 20px;
   border-radius: 5px;
 }
+.highlight {
+  padding-right: 30px;
+  text-shadow: none;
+}
 @media screen and (min-width: 760px) {
   .center {
     width: 70vw;
