@@ -35,7 +35,27 @@
   transition: ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+/* Task Category */
+#task-category {
+  padding: 0;
+  border: none;
+  font-size: 1em;
+  outline: none;
+  padding: 8px;
+  background: var(--cream);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--dark-grey);
+}
 
+#task-category option {
+  cursor: pointer;
+  font-size: 14px;
+}
+#task-category option:checked {
+  cursor: pointer;
+}
 @media screen and (min-width: 760px) {
   .create-task input[type="text"] {
     color: var(--light-grey);
