@@ -9,5 +9,14 @@ export const addTaskTest = () => {
       category: "home",
       date: "2023-07-09",
     };
+    // Simulate form submission to add the task
+    form.dispatchEvent(new Event("submit"));
+    const taskList = document.getElementById("task-list");
+    const taskItem = taskList.querySelector(".task-item");
+
+    taskList.removeChild(taskItem);
+
+    // Test that a task item was created
+    equal(taskItem !== null, true, "A new task item was created");
   });
 };
