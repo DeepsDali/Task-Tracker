@@ -3,12 +3,18 @@ import { getDisplayDate } from "../Helpers/getDisplayDate.js";
 export const addTaskTest = () => {
   console.log("ADD BUTTON TESTS");
 
-  test("Check add button creates a new task, displays task content, due date and category ", () => {
+  test("Add button creates a new task item on the task list", () => {
     const inputObject = {
       text: "Test Task",
       category: "home",
       date: "2023-07-09",
     };
+
+    // Set the input values
+    document.getElementById("addTask").value = inputObject.text;
+    document.querySelector("#task-category").value = inputObject.category;
+    document.querySelector("#due-date").value = inputObject.date;
+
     // Simulate form submission to add the task
     form.dispatchEvent(new Event("submit"));
     const taskList = document.getElementById("task-list");
@@ -17,6 +23,16 @@ export const addTaskTest = () => {
     taskList.removeChild(taskItem);
 
     // Test that a task item was created
-    equal(taskItem !== null, true, "A new task item was created");
+    equal(taskItem !== null, true, "A new task item is created");
+
+    // Test the content of the task item
+    const label = taskItem.querySelector("label");
+    equal(
+      label.textContent.includes(inputObject.text),
+      true,
+      `Expected content of the task item: ${
+        inputObject.text
+      } Recieved :${label.textContent.slice(12)}`
+    );
   });
 };
