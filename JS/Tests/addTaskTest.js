@@ -34,5 +34,14 @@ export const addTaskTest = () => {
         inputObject.text
       } Recieved :${label.textContent.slice(12)}`
     );
+    // Test the task category
+    const taskCategory = document.querySelector("#task-category").value
+      ? "home"
+      : "work";
+    equal(
+      taskCategory,
+      inputObject.category,
+      `Expected task category: ${inputObject.category} Recieved: ${taskCategory}`
+    );
   });
 };
