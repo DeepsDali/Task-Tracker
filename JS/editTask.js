@@ -14,7 +14,7 @@ function openEditor() {
     const acceptEdit = createButton("&#10003", "btn");  
     const cancelBtn = createButton("&#10060", "btn");
     // creates text input field gives it some preset attributes
-    const editInput = createTextInput(label.textContent);  
+    const editInput = createTextInput(label.innerHTML);  
     // swaps new editor related elements on to page
     nodeSwap(parent, [
       [editInput, label],
@@ -28,8 +28,8 @@ function openEditor() {
   
   function closeEditor(acceptChanges, parent, nodeArr) {
     const [originalNode, newNode] = nodeArr[0];
-    if (acceptChanges) originalNode.textContent = newNode.value;
-    else originalNode.textContent = newNode.placeholder;
+    if (acceptChanges) originalNode.innerHTML = newNode.dataset.htmlStore.concat(newNode.value);
+    else newNode.dataset.htmlStore.concat(newNode.dataset.textStore);
     nodeSwap(parent, nodeArr);
   }
   
@@ -45,11 +45,15 @@ function openEditor() {
   }
   
   function createTextInput(value) {
+    const stringSplitPoint = value.search('<br>') + 5; // find position we want to split html string
+    const textString = value.slice(stringSplitPoint); // save the text content only
+    const htmlString = value.slice(0,stringSplitPoint); // save the html content only
     const input = document.createElement("input");
     input.classList.add("edittext");
     input.type = "text";
-    input.value = value;
-    input.placeholder = value;
+    input.value = textString;
+    input.dataset.htmlStore = htmlString;  // save the html content as data attribute so we can access it down the line
+    input.dataset.textStore = textString;  //
     return input;
   }
   
