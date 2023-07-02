@@ -1,3 +1,5 @@
+import { getDisplayDate } from "./Helpers/getDisplayDate.js";
+
 export const editTask = () => {
     const editBtns = document.getElementsByClassName("editbtn");  // creates array from all element nodes with editbtn class
     [...editBtns].forEach(btn => // spread editbtns array so we can access each node
@@ -15,9 +17,6 @@ function openEditor() {
     const cancelBtn = createButton("&#10060", "btn");
     // creates text input field gives it some preset attributes
     const editContainer = createTextInput(label.innerHTML,label.dataset.dateStore);  
-    // const editContainer = document.createElement("div");
-    // editContainer.classList.add("edit-task");
-    // editContainer.appendChild(editInput);
     // swaps new editor related elements on to page
     nodeSwap(parent, [
       [editContainer, label],
@@ -31,8 +30,13 @@ function openEditor() {
   
   function closeEditor(acceptChanges, parent, nodeArr) {
     const [originalNode, newNode] = nodeArr[0];
-    if (acceptChanges) originalNode.innerHTML = newNode.dataset.htmlStore.concat(newNode.firstChild.value);
-    else newNode.dataset.htmlStore.concat(newNode.dataset.textStore);
+    console.log(newNode)
+    if (acceptChanges) {
+      // originalNode.innerHTML = newNode.dataset.htmlStore.concat(newNode.firstChild.value);
+      let selectedDate = newNode.children[1].value;
+      originalNode.innerHTML = ` <span class="highlight">Due: ${getDisplayDate(selectedDate)} </span><br> ${newNode.firstChild.value}`
+      originalNode.dataset.dateStore = selectedDate;
+    }
     nodeSwap(parent, nodeArr);
   }
   
@@ -55,9 +59,11 @@ function openEditor() {
     input.classList.add("edit-text-input");
     input.type = "text";
     input.value = textString;
+    input.classList.add(".edit-task-text")
     const date = document.createElement("input");
     date.type = "date"
     date.value = dateStore;
+    date.classList.add("edit-due-date")
     const div = document.createElement("div");
     div.classList.add("edit-task")
     div.appendChild(input);

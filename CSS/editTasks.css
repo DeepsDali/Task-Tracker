@@ -1,0 +1,46 @@
+.edit-task {
+    width: 680px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+.edit-due-date {
+    font-size: 1em;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: var(--cream);
+    border: none;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: var(--dark-grey);
+  }
+  
+.edit-due-date:focus {
+    outline: none;
+}
+
+.edit-text-input {
+    color: var(--light-grey);
+    width: 90%;
+    padding: 20px;
+    height: 30px;
+    border: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    outline: none;
+    background: var(--cream);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+
+@media screen and (min-width: 760px) {
+    .edit-task {
+      width: 680px;
+    }
+    .edit-text-input {
+      width: 65%;
+    }
+  }
+  
