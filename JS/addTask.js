@@ -31,6 +31,7 @@ export const addTask = () => {
   const selectedDate = dueDate.value;
   const displayDate = getDisplayDate(selectedDate);
   label.innerHTML = ` <span class="highlight">Due: ${displayDate} </span><br> ${inputValue}`;
+  label.dataset.dateStore = selectedDate; // saves date in html attribute to be used later
   //Edit and Delete buttons
   editButton.classList.add("btn", "editbtn");
   editButton.innerHTML = "&#9998;";

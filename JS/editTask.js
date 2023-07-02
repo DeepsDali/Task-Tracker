@@ -14,21 +14,24 @@ function openEditor() {
     const acceptEdit = createButton("&#10003", "btn");  
     const cancelBtn = createButton("&#10060", "btn");
     // creates text input field gives it some preset attributes
-    const editInput = createTextInput(label.innerHTML);  
+    const editContainer = createTextInput(label.innerHTML,label.dataset.dateStore);  
+    // const editContainer = document.createElement("div");
+    // editContainer.classList.add("edit-task");
+    // editContainer.appendChild(editInput);
     // swaps new editor related elements on to page
     nodeSwap(parent, [
-      [editInput, label],
+      [editContainer, label],
       [acceptEdit, editBtn],
       [cancelBtn, delBtn]
     ]);
   
-    acceptEdit.addEventListener("click", () => closeEditor(true, parent, [[label, editInput], [editBtn, acceptEdit], [delBtn, cancelBtn]]));
-    cancelBtn.addEventListener("click", () => closeEditor(false, parent, [[label, editInput], [editBtn, acceptEdit], [delBtn, cancelBtn]]));
+    acceptEdit.addEventListener("click", () => closeEditor(true, parent, [[label, editContainer], [editBtn, acceptEdit], [delBtn, cancelBtn]]));
+    cancelBtn.addEventListener("click", () => closeEditor(false, parent, [[label, editContainer], [editBtn, acceptEdit], [delBtn, cancelBtn]]));
   }
   
   function closeEditor(acceptChanges, parent, nodeArr) {
     const [originalNode, newNode] = nodeArr[0];
-    if (acceptChanges) originalNode.innerHTML = newNode.dataset.htmlStore.concat(newNode.value);
+    if (acceptChanges) originalNode.innerHTML = newNode.dataset.htmlStore.concat(newNode.firstChild.value);
     else newNode.dataset.htmlStore.concat(newNode.dataset.textStore);
     nodeSwap(parent, nodeArr);
   }
@@ -44,16 +47,33 @@ function openEditor() {
     return button;
   }
   
-  function createTextInput(value) {
+  function createTextInput(value,dateStore) {
     const stringSplitPoint = value.search('<br>') + 5; // find position we want to split html string
     const textString = value.slice(stringSplitPoint); // save the text content only
     const htmlString = value.slice(0,stringSplitPoint); // save the html content only
     const input = document.createElement("input");
-    input.classList.add("edittext");
+    input.classList.add("edit-text-input");
     input.type = "text";
     input.value = textString;
-    input.dataset.htmlStore = htmlString;  // save the html content as data attribute so we can access it down the line
-    input.dataset.textStore = textString;  //
-    return input;
+    const date = document.createElement("input");
+    date.type = "date"
+    date.value = dateStore;
+    const div = document.createElement("div");
+    div.classList.add("edit-task")
+    div.appendChild(input);
+    div.appendChild(date)
+    div.dataset.htmlStore = htmlString;  // save the html content as data attribute so we can access it down the line
+    div.dataset.textStore = textString;  //
+    return div;
   }
-  
+
+  function todaysDate() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate(); 
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    const formattedToday = `${yyyy}-${mm}-${dd}`;
+    return formattedToday
+  }
