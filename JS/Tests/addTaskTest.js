@@ -3,7 +3,7 @@ import { getDisplayDate } from "../Helpers/getDisplayDate.js";
 export const addTaskTest = () => {
   console.log("ADD BUTTON TESTS");
 
-  test("Add button creates a new task item on the task list", () => {
+  test("Add button creates a new task, displays correct content, category and due date", () => {
     const inputObject = {
       text: "Test Task",
       category: "home",
