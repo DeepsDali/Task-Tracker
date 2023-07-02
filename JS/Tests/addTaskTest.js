@@ -43,5 +43,13 @@ export const addTaskTest = () => {
       inputObject.category,
       `Expected task category: ${inputObject.category} Recieved: ${taskCategory}`
     );
+    let due = getDisplayDate(inputObject.date);
+    // Test the due date
+    const dueDate = label.querySelector(".highlight").textContent;
+    equal(
+      dueDate.includes("09 Jul"),
+      true,
+      `Date Expected Due: ${due} Recieved: ${dueDate}`
+    );
   });
 };
