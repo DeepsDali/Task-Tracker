@@ -16,7 +16,8 @@ export const addTaskTest = () => {
     document.querySelector("#due-date").value = inputObject.date;
 
     // Simulate form submission to add the task
-    form.dispatchEvent(new Event("submit"));
+    // form.dispatchEvent(new Event("submit"));   // submitting form causes page to refresh which on firefox leads to blank page
+    document.querySelector("#submit-btn").click();  // have changed this to simulate click on submit button
     const taskList = document.getElementById("task-list");
     const taskItem = taskList.querySelector(".task-item");
 

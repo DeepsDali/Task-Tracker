@@ -9,11 +9,11 @@ export const editTaskTest = () => {
     document.getElementById("addTask").value = textString;
     addTask(); // adds new task to task list
     const editDiv = [...document.getElementsByTagName("label")].filter(
-      (label) => label.innerText == textString
+      (label) => label.dataset.textStore == textString
     )[0].parentElement; // find the new task div
-    editTask(); // init remove task
+    editTask(); // init edit task
     editDiv.querySelector(".editbtn").click(); // simulate click on edit button
-    const editCheck = editDiv.querySelector(".edittext").type; // check type of checkbox label
+    const editCheck = editDiv.querySelector(".edit-text-input").type; // check type of checkbox label
     equal(
       editCheck,
       "text",
@@ -28,7 +28,7 @@ export const editTaskTest = () => {
     document.getElementById("addTask").value = textString;
     addTask(); // adds new task to task list
     const editDiv = [...document.getElementsByTagName("label")].filter(
-      (label) => label.innerText == textString
+      (label) => label.dataset.textStore == textString
     )[0].parentElement; // find the new task div
     editTask(); // init remove task
     const preEditButtonCount = editDiv.querySelectorAll("button").length; // check number of buttons in div
@@ -59,7 +59,7 @@ export const editTaskTest = () => {
     document.getElementById("addTask").value = textString;
     addTask(); // adds new task to task list
     const editDiv = [...document.getElementsByTagName("label")].filter(
-      (label) => label.innerText == textString
+      (label) => label.dataset.textStore == textString
     )[0].parentElement; // find the new task div
     editTask(); // init remove task
     editDiv.querySelector(".editbtn").click(); // simulate click on edit button
@@ -80,13 +80,14 @@ export const editTaskTest = () => {
     document.getElementById("addTask").value = textString;
     addTask(); // adds new task to task list
     const editDiv = [...document.getElementsByTagName("label")].filter(
-      (label) => label.innerText == textString
+      (label) => label.dataset.textStore == textString
     )[0].parentElement; // find the new task div
     editTask(); // init remove task
     editDiv.querySelector(".editbtn").click(); // simulate click on edit button
-    editDiv.querySelector(".edittext").value = newTextString; // give text input new value
+    editDiv.querySelector(".edit-text-input").value = newTextString; // give text input new value
     editDiv.querySelector("button").click(); // simulate click on accept changes button
-    const editCheck = editDiv.querySelector(".checkbox-label").textContent; // check text content of label
+    const editCheck = editDiv.querySelector(".checkbox-label").textContent.slice(14); // check text content of label and remove date section of text
+    console.log(editCheck);
     equal(
       editCheck,
       newTextString,
@@ -102,13 +103,13 @@ export const editTaskTest = () => {
     document.getElementById("addTask").value = textString;
     addTask(); // adds new task to task list
     const editDiv = [...document.getElementsByTagName("label")].filter(
-      (label) => label.innerText == textString
+      (label) => label.dataset.textStore == textString
     )[0].parentElement; // find the new task div
     editTask(); // init remove task
     editDiv.querySelector(".editbtn").click(); // simulate click on edit button
-    editDiv.querySelector(".edittext").value = newTextString; // give text input new value
+    editDiv.querySelector(".edit-text-input").value = newTextString; // give text input new value
     editDiv.querySelectorAll("button")[1].click(); // simulate click on cancel changes button
-    const editCheck = editDiv.querySelector(".checkbox-label").textContent; // check text content of label
+    const editCheck = editDiv.querySelector(".checkbox-label").textContent.slice(14); // check text content of label
     equal(
       editCheck,
       textString,
