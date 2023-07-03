@@ -16,7 +16,7 @@ function openEditor() {
     const acceptEdit = createButton("&#10003", "btn");  
     const cancelBtn = createButton("&#10060", "btn");
     // creates text input field gives it some preset attributes
-    const editContainer = createTextInput(label.innerHTML,label.dataset.dateStore);  
+    const editContainer = createTextInput(label.dataset.textStore,label.dataset.dateStore,label.dataset.taskType);  
     // swaps new editor related elements on to page
     nodeSwap(parent, [
       [editContainer, label],
@@ -33,9 +33,17 @@ function openEditor() {
     console.log(newNode)
     if (acceptChanges) {
       // originalNode.innerHTML = newNode.dataset.htmlStore.concat(newNode.firstChild.value);
-      let selectedDate = newNode.children[1].value;
-      originalNode.innerHTML = ` <span class="highlight">Due: ${getDisplayDate(selectedDate)} </span><br> ${newNode.firstChild.value}`
+      const newValue = newNode.firstChild.value;
+      const selectedDate = newNode.children[1].value;
+      const taskType = newNode.children[2].value;
+      originalNode.innerHTML = ` <span class="highlight">Due: ${getDisplayDate(selectedDate)} </span><br> ${newValue}`;
+      parent.style.backgroundColor =
+        taskType === "home"
+          ? "rgba(6, 67, 199, 0.317)"
+          : "rgba(57, 17, 79, 0.333)";
       originalNode.dataset.dateStore = selectedDate;
+      originalNode.dataset.textStore = newValue;
+      originalNode.dataset.taskType = taskType;
     }
     nodeSwap(parent, nodeArr);
   }
@@ -51,35 +59,48 @@ function openEditor() {
     return button;
   }
   
-  function createTextInput(value,dateStore) {
-    const stringSplitPoint = value.search('<br>') + 5; // find position we want to split html string
-    const textString = value.slice(stringSplitPoint); // save the text content only
-    const htmlString = value.slice(0,stringSplitPoint); // save the html content only
+  function createTextInput(textStore,dateStore,taskType) {  // this function quite bloated would be good to split up.
     const input = document.createElement("input");
     input.classList.add("edit-text-input");
     input.type = "text";
-    input.value = textString;
-    input.classList.add(".edit-task-text")
+    input.value = textStore;
+    input.classList.add(".edit-task-text");
+
     const date = document.createElement("input");
-    date.type = "date"
+    date.type = "date";
     date.value = dateStore;
-    date.classList.add("edit-due-date")
+    date.classList.add("edit-due-date");
+
+    const taskInput = document.createElement("select");
+    taskInput.classList.add("edit-type");
+    const work = document.createElement("option");
+    const home = document.createElement("option");
+    work.value = "work";
+    work.innerText = "work";
+    home.value = "home";
+    home.innerText = "home";
+    if (taskType == "home") home.selected = "selected";
+    else work.selected = "selected";
+    taskInput.appendChild(work);
+    taskInput.appendChild(home);
+
     const div = document.createElement("div");
-    div.classList.add("edit-task")
+    div.classList.add("edit-task");
     div.appendChild(input);
-    div.appendChild(date)
-    div.dataset.htmlStore = htmlString;  // save the html content as data attribute so we can access it down the line
-    div.dataset.textStore = textString;  //
+    div.appendChild(date);
+    div.appendChild(taskInput);
+    div.dataset.textStore = textStore;  //
     return div;
   }
 
-  function todaysDate() {
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    let mm = today.getMonth() + 1; // Months start at 0!
-    let dd = today.getDate(); 
-    if (dd < 10) dd = '0' + dd;
-    if (mm < 10) mm = '0' + mm;
-    const formattedToday = `${yyyy}-${mm}-${dd}`;
-    return formattedToday
-  }
+ /*  Use this on add task date selector
+function todaysDate() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate(); 
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+  const formattedToday = `${yyyy}-${mm}-${dd}`;
+  return formattedToday
+} */
