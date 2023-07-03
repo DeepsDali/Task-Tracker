@@ -14,6 +14,7 @@
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     color: var(--dark-grey);
+    grid-area: dateInput;
   }
   
 .edit-due-date:focus {
@@ -31,6 +32,7 @@
     outline: none;
     background: var(--cream);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    grid-area: textInput;
 }
 
 .edit-type {
@@ -44,6 +46,7 @@
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   color: var(--dark-grey);
+  grid-area: typeInput;
 }
 
 .edit-type option {
@@ -57,9 +60,17 @@
 @media screen and (min-width: 760px) {
     .edit-task {
       width: 680px;
+      display: grid;
+      grid-template-areas: 
+      "textInput dateInput"
+      "textInput typeInput";
+      grid-template-columns: 3fr 1fr;
+      column-gap: 20px;
+      row-gap: 20px;
     }
     .edit-text-input {
-      width: 65%;
+      width: 100%;
+      align-self: center;
     }
   }
   
