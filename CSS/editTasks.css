@@ -1,0 +1,79 @@
+.edit-task {
+    width: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 5px;
+  }
+
+.edit-due-date {
+    font-size: 1em;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: var(--cream);
+    border: none;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: var(--dark-grey);
+    grid-area: dateInput;
+    width: 100%;
+  }
+  
+.edit-due-date:focus {
+    outline: none;
+}
+
+.edit-text-input {
+    color: var(--light-grey);
+    width: 90%;
+    padding: 20px;
+    height: 30px;
+    border: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    outline: none;
+    background: var(--cream);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    grid-area: textInput;
+    width: 100%;
+}
+
+.edit-type {
+  padding: 0;
+  border: none;
+  font-size: 1em;
+  outline: none;
+  padding: 8px;
+  background: var(--cream);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--dark-grey);
+  grid-area: typeInput;
+  width: 100%;
+}
+
+.edit-type option {
+  cursor: pointer;
+  font-size: 14px;
+}
+.edit-type option:checked {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 760px) {
+    .edit-task {
+      width: 680px;
+      display: grid;
+      grid-template-areas: 
+      "textInput dateInput"
+      "textInput typeInput";
+      grid-template-columns: 3fr 1fr;
+      column-gap: 20px;
+      row-gap: 20px;
+    }
+    .edit-text-input {
+      width: 100%;
+      align-self: center;
+    }
+  }
+  

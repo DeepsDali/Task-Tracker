@@ -17,6 +17,7 @@ export const addTask = () => {
   taskItem.className = "task-item stack-lg row center";
   label.htmlFor = "checkbox";
   label.className = "checkbox-label";
+  label.dataset.textStore = inputValue;
   // label.textContent = inputValue;
 
   // Set task item background
@@ -26,11 +27,13 @@ export const addTask = () => {
     selectedOption === "home"
       ? "rgba(6, 67, 199, 0.317)"
       : "rgba(57, 17, 79, 0.333)";
+  label.dataset.taskType = selectedOption;
   //Set Date
   const dueDate = document.querySelector("#due-date");
   const selectedDate = dueDate.value;
   const displayDate = getDisplayDate(selectedDate);
   label.innerHTML = ` <span class="highlight">Due: ${displayDate} </span><br> ${inputValue}`;
+  label.dataset.dateStore = selectedDate; // saves date in html attribute to be used later
   //Edit and Delete buttons
   editButton.classList.add("btn", "editbtn");
   editButton.innerHTML = "&#9998;";
