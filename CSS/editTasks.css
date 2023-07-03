@@ -33,7 +33,26 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.edit-type {
+  padding: 0;
+  border: none;
+  font-size: 1em;
+  outline: none;
+  padding: 8px;
+  background: var(--cream);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--dark-grey);
+}
 
+.edit-type option {
+  cursor: pointer;
+  font-size: 14px;
+}
+.edit-type option:checked {
+  cursor: pointer;
+}
 
 @media screen and (min-width: 760px) {
     .edit-task {
