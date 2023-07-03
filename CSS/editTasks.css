@@ -1,8 +1,8 @@
 .edit-task {
-    width: 680px;
+    width: 150px;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    row-gap: 5px;
   }
 
 .edit-due-date {
@@ -15,6 +15,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     color: var(--dark-grey);
     grid-area: dateInput;
+    width: 100%;
   }
   
 .edit-due-date:focus {
@@ -33,6 +34,7 @@
     background: var(--cream);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     grid-area: textInput;
+    width: 100%;
 }
 
 .edit-type {
@@ -47,6 +49,7 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   color: var(--dark-grey);
   grid-area: typeInput;
+  width: 100%;
 }
 
 .edit-type option {
