@@ -16,7 +16,8 @@ export const addTaskTest = () => {
     document.querySelector("#due-date").value = inputObject.date;
 
     // Simulate form submission to add the task
-    form.dispatchEvent(new Event("submit"));
+    // form.dispatchEvent(new Event("submit"));   // submitting form causes page to refresh which on firefox leads to blank page
+    document.querySelector("#submit-btn").click();  // have changed this to simulate click on submit button
     const taskList = document.getElementById("task-list");
     const taskItem = taskList.querySelector(".task-item");
 
@@ -52,4 +53,24 @@ export const addTaskTest = () => {
       `Date Expected Due: ${due} Recieved: ${dueDate}`
     );
   });
+  dateReset();
 };
+
+
+function dateReset() {// set date selector value and min value to todays date
+  const dateSelector = document.getElementById("due-date");
+  const dateValue = todaysDate();
+  dateSelector.value = dateValue;
+  dateSelector.min = dateValue;
+}
+
+function todaysDate() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate(); 
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+  const formattedToday = `${yyyy}-${mm}-${dd}`;
+  return formattedToday
+}

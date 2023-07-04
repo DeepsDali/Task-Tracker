@@ -9,7 +9,7 @@ export const removeTaskTest = () => {
     document.getElementById("addTask").value = textString;
     addTask(); // adds new task to task list
     const deleteDiv = [...document.getElementsByTagName("label")].filter(
-      (label) => label.innerText == textString
+      (label) => label.dataset.textStore == textString
     )[0].parentElement; // find the new task div
     const containerElement = deleteDiv.parentElement; // get parent of new task
     const elementCount = containerElement.childElementCount; // count children
