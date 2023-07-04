@@ -1,3 +1,47 @@
 .filter-tasks {
   margin-top: 5px;
 }
+
+.filters {
+  justify-content: space-between;
+  padding-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+#clear-div {
+  justify-content: left;
+  width: 100%;
+}
+
+.filter-btn,
+.clear-btn {
+  margin-top: 15px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 1em;
+  color: var(--cream);
+  cursor: pointer;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+.filter-btn {
+  background-color: var(--light-grey);
+  gap: 20px;
+  color: var(--cream);
+}
+.filter-btn:hover {
+  background-color: var(--dark-grey);
+}
+.clear-btn {
+  background-color: var(--dark-grey-transparent);
+  color: var(--cream);
+  font-weight: bolder;
+  width: 150px;
+  margin: 5px;
+}
+.clear-btn:hover {
+  background-color: var(--mustard);
+}
+.active {
+  background-color: var(--dark-grey);
+}
