@@ -25,7 +25,6 @@ function openEditor() {
     ]);
     acceptEdit.addEventListener("click", () => document.getElementById("hiddenSubmitBtn").click())
     editContainer.addEventListener("submit", e => {
-      console.log("here");
       e.preventDefault();
       closeEditor(true, parent, [[label, editContainer], [editBtn, acceptEdit], [delBtn, cancelBtn]])
     });
@@ -36,7 +35,6 @@ function openEditor() {
   
   function closeEditor(acceptChanges, parent, nodeArr) {
     const [originalNode, newNode] = nodeArr[0];
-    console.log(newNode)
     if (acceptChanges) {
       // originalNode.innerHTML = newNode.dataset.htmlStore.concat(newNode.firstChild.value);
       const newValue = newNode.firstChild.value;
