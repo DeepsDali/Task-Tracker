@@ -48,6 +48,12 @@ export const addTask = () => {
 
   // Append the task item div to the task list
   taskList.appendChild(taskItem);
+  const message = document.getElementById("message");
+  if (taskList.children.length > 0) {
+    message.style.display = "none";
+  } else {
+    message.style.display = "block";
+  }
 
   // Clear the input field
   document.getElementById("addTask").value = "";
