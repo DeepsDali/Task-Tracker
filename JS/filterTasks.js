@@ -1,6 +1,8 @@
 const showAllBtn = document.getElementById("all");
 const showPendingBtn = document.getElementById("pending");
 const showCompletedBtn = document.getElementById("completed");
+const homeBtn = document.getElementById("home-btn");
+const workBtn = document.getElementById("work-btn");
 const taskContainer = document.getElementById("task-list");
 
 export function filterHandler() {
@@ -19,6 +21,12 @@ export function filterHandler() {
         filterTasksFunc(false);
     });
 
+    homeBtn.addEventListener("click", e => {
+        filterByTaskType("work")
+    })
+    workBtn.addEventListener("click", e => {
+        filterByTaskType("home")
+    })
 }
 
 function activeButtonFunc(e) {
@@ -40,7 +48,13 @@ function filterTasksFunc(showPending) {
     [...completedTasks].forEach(task => task.style.display = "none");
 }
 
-
+function filterByTaskType(taskType) {
+    showAllFunc();
+    filterNewTasks();
+    const tasks = [...taskContainer.childNodes].filter(parent => parent.tagName == "DIV");
+    const completedTasks = [...tasks].filter((task) => task.childNodes[1].dataset.taskType == taskType);
+    [...completedTasks].forEach(task => task.style.display = "none");
+}
 export function filterNewTasks() {
     if (showCompletedBtn.classList.contains("active")) showCompletedBtn.click();
     else if (showPendingBtn.classList.contains("active")) showPendingBtn.click();
