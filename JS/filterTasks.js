@@ -3,20 +3,23 @@ const showPendingBtn = document.getElementById("pending");
 const showCompletedBtn = document.getElementById("completed");
 const taskContainer = document.getElementById("task-list");
 
-showAllBtn.addEventListener("click", e => {
-    activeButtonFunc(e);
-    showAllFunc();
-});
+export function filterHandler() {
+    showAllBtn.addEventListener("click", e => {
+        activeButtonFunc(e);
+        showAllFunc();
+    });
 
-showPendingBtn.addEventListener("click", e => {
-    activeButtonFunc(e);
-    filterTasksFunc(true);
-});
+    showPendingBtn.addEventListener("click", e => {
+        activeButtonFunc(e);
+        filterTasksFunc(true);
+    });
 
-showCompletedBtn.addEventListener("click", e => {
-    activeButtonFunc(e);
-    filterTasksFunc(false);
-});
+    showCompletedBtn.addEventListener("click", e => {
+        activeButtonFunc(e);
+        filterTasksFunc(false);
+    });
+
+}
 
 function activeButtonFunc(e) {
     showAllBtn.classList.remove("active");
@@ -33,8 +36,6 @@ function showAllFunc() {
 function filterTasksFunc(showPending) {
     showAllFunc();
     const tasks = [...taskContainer.childNodes].filter(parent => parent.tagName == "DIV");
-    console.log(tasks);
-    const completedTasks = [...tasks].filter((task) => task.childNodes[0].checked == showPending)
-    console.log(completedTasks);
+    const completedTasks = [...tasks].filter((task) => task.childNodes[0].checked == showPending);
     [...completedTasks].forEach(task => task.style.display = "none");
 }
