@@ -4,6 +4,7 @@ const showCompletedBtn = document.getElementById("completed");
 const homeBtn = document.getElementById("home-btn");
 const workBtn = document.getElementById("work-btn");
 const taskContainer = document.getElementById("task-list");
+const noTasksMessage = document.getElementById("message");
 
 export function filterHandler() {
     showAllBtn.addEventListener("click", e => {
@@ -37,7 +38,9 @@ function activeButtonFunc(e) {
 }
 
 function showAllFunc() {
+    noTasksMessage.style.display = "none";
     const tasks = [...taskContainer.childNodes].filter(parent => parent.tagName == "DIV");
+    if (tasks.length == 0) noTasksToDisplay();
     [...tasks].forEach(task => task.style.display = "flex");
 }
 
@@ -45,6 +48,8 @@ function filterTasksFunc(showPending) {
     showAllFunc();
     const tasks = [...taskContainer.childNodes].filter(parent => parent.tagName == "DIV");
     const completedTasks = [...tasks].filter((task) => task.childNodes[0].checked == showPending);
+    console.log(completedTasks);
+    if (completedTasks.length > 0 && (tasks.length - completedTasks.length) <= 0) noTasksToDisplay();
     [...completedTasks].forEach(task => task.style.display = "none");
 }
 
@@ -53,7 +58,12 @@ function filterByTaskType(taskType) {
     filterNewTasks();
     const tasks = [...taskContainer.childNodes].filter(parent => parent.tagName == "DIV");
     const completedTasks = [...tasks].filter((task) => task.childNodes[1].dataset.taskType == taskType);
+    if (completedTasks.length > 0 && (tasks.length - completedTasks.length) <= 0) noTasksToDisplay();
     [...completedTasks].forEach(task => task.style.display = "none");
+}
+
+function noTasksToDisplay() {
+    noTasksMessage.style.display = "flex";
 }
 export function filterNewTasks() {
     if (showCompletedBtn.classList.contains("active")) showCompletedBtn.click();
