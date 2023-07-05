@@ -33,7 +33,7 @@
   background-color: var(--dark-grey);
 }
 .clear-btn {
-  background-color: var(--dark-grey-transparent);
+  background-color: var(--mustard-dark);
   color: var(--cream);
   font-weight: bolder;
   width: 150px;
