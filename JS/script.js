@@ -10,3 +10,7 @@ form.addEventListener("submit", function (event) {
   removeTask();
   editTask();
 });
+window.addEventListener("DOMContentLoaded", function () {
+  const message = document.getElementById("message");
+  message.style.display = "block";
+});

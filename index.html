@@ -57,12 +57,27 @@
           </div>
         </form>
       </section>
-      <section
-        id="filterTasks-section"
-        class="filter-tasks center stack-lg"
-      ></section>
+      <section id="filterTasks-section" class="filter-tasks center column">
+        <div id="clear-div" class="center">
+          <button id="clear-completed" class="clear-btn">Clear Completed</button>
+          <button id="clear-all" class="clear-btn">Clear All</button>
+        </div>
+        <div id="filter-div" class="filters center column">
+          <div>
+            <button id="all" class="filter-btn active">All</button>
+            <button id="pending" class="filter-btn">Pending</button>
+            <button id="completed" class="filter-btn">Completed</button>
+          </div>
+          <div>
+            <button id="home-btn" class="category-btn home">Home</button>
+            <button id="work-btn" class="category-btn work">Work</button>
+          </div>
+        </div>
+      </section>
       <section id="displayTasks-section" class="display-tasks center">
         <div id="task-list" class="tasks stack-md column center">
+          <p id="message" class="message row">No tasks to display.</p>
+        </div>
       </section>
     </main>
     <script type="module" src="./JS/script.js"></script>
