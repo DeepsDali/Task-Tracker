@@ -39,3 +39,9 @@ function filterTasksFunc(showPending) {
     const completedTasks = [...tasks].filter((task) => task.childNodes[0].checked == showPending);
     [...completedTasks].forEach(task => task.style.display = "none");
 }
+
+
+export function filterNewTasks() {
+    if (showCompletedBtn.classList.contains("active")) showCompletedBtn.click();
+    else if (showPendingBtn.classList.contains("active")) showPendingBtn.click();
+}

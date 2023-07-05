@@ -1,4 +1,5 @@
 import { getDisplayDate } from "./Helpers/getDisplayDate.js";
+import { filterNewTasks } from "./filterTasks.js";
 
 export const addTask = () => {
   const taskList = document.getElementById("task-list");
@@ -14,6 +15,7 @@ export const addTask = () => {
   checkbox.name = "checkbox";
   checkbox.id = "checkbox";
   checkbox.className = "checkbox";
+  checkbox.addEventListener("click",filterNewTasks)
   taskItem.className = "task-item stack-lg row center";
   label.htmlFor = "checkbox";
   label.className = "checkbox-label";

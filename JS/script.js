@@ -1,7 +1,7 @@
 import { addTask } from "./addTask.js";
 import { removeTask } from "./removeTask.js";
 import { editTask } from "./editTask.js";
-import { filterHandler } from "./filterTasks.js";
+import { filterHandler, filterNewTasks } from "./filterTasks.js";
 
 const form = document.getElementById("form");
 
@@ -10,6 +10,7 @@ form.addEventListener("submit", function (event) {
   addTask();
   removeTask();
   editTask();
+  filterNewTasks();
 });
 window.addEventListener("DOMContentLoaded", function () {
   const message = document.getElementById("message");
