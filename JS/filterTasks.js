@@ -40,6 +40,7 @@ function activeButtonFunc(e) {
 function showAllFunc() {
     noTasksMessage.style.display = "none";
     const tasks = [...taskContainer.childNodes].filter(parent => parent.tagName == "DIV");
+    console.log(tasks);
     if (tasks.length == 0) noTasksToDisplay();
     [...tasks].forEach(task => task.style.display = "flex");
 }
@@ -66,6 +67,8 @@ function noTasksToDisplay() {
     noTasksMessage.style.display = "flex";
 }
 export function filterNewTasks() {
+    console.log("here");
     if (showCompletedBtn.classList.contains("active")) showCompletedBtn.click();
     else if (showPendingBtn.classList.contains("active")) showPendingBtn.click();
+    else showAllBtn.click();
 }
