@@ -32,7 +32,7 @@ export const editTaskTest = () => {
     editDiv.remove();
   });
 
-  test("openEditor should replace buttons with editor related ones", () => {
+  test("openEditor should replace buttons with editor related ones and add a hidden form submit button", () => {
     const textString = "editor button check";
     const taskList = document.getElementById("task-list");
     document.getElementById("addTask").value = textString;
@@ -42,8 +42,13 @@ export const editTaskTest = () => {
     )[0].parentElement; // find the new task div
     const preEditButtonCount = editDiv.querySelectorAll("button").length; // check number of buttons in div
     editDiv.querySelector(".editbtn").click(); // simulate click on edit button
-    const [acceptButton, cancelButton] = editDiv.querySelectorAll("button"); // get both buttons
+    const [submitButton, acceptButton, cancelButton] = editDiv.querySelectorAll("button"); // get both buttons
     const postEditButtonCount = editDiv.querySelectorAll("button").length; // check number of buttons in div
+    equal(
+      submitButton.style.display,
+      "none",
+      `Submit button should be set to display "none", received "${submitButton.style.display}"`
+    );
     equal(
       acceptButton.innerHTML,
       "✓",
@@ -56,8 +61,8 @@ export const editTaskTest = () => {
     );
     equal(
       postEditButtonCount,
-      preEditButtonCount,
-      `There should be a total of 2 buttons before and after opening the editor. Expected ${preEditButtonCount}, recieved ${postEditButtonCount}`
+      3,
+      `There should be a total of 3 buttons  after opening the editor. Expected ${preEditButtonCount}, recieved ${postEditButtonCount}`
     );
     editDiv.remove();
   });
@@ -133,7 +138,7 @@ export const editTaskTest = () => {
     editDiv.querySelector(".edit-text-input").value = newTextString; // give text input new value
     editDiv.querySelector(".edit-due-date").value = newDate;
     editDiv.querySelector(".edit-type").value = "work";
-    editDiv.querySelectorAll("button")[1].click(); // simulate click on cancel changes button
+    editDiv.querySelectorAll("button")[2].click(); // simulate click on cancel changes button
     const editCheck = editDiv.querySelector(".checkbox-label").textContent.slice(14); // check text content of label
     const dateEditCheck = editDiv.querySelector(".checkbox-label").textContent.slice(6,12);
     const taskTypeEditCheck = editDiv.querySelector(".checkbox-label").dataset.taskType;

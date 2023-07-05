@@ -13,7 +13,7 @@ function openEditor() {
     const delBtn = parent.querySelector(".delbtn");
     const editBtn = event.target;
     // creates text editor buttons gives them some preset attributes
-    const acceptEdit = createButton("&#10003", "btn");  
+    const acceptEdit = createButton("&#10003", "btn");
     const cancelBtn = createButton("&#10060", "btn");
     // creates text input field gives it some preset attributes
     const editContainer = createTextInput(label.dataset.textStore,label.dataset.dateStore,label.dataset.taskType);  
@@ -23,14 +23,18 @@ function openEditor() {
       [acceptEdit, editBtn],
       [cancelBtn, delBtn]
     ]);
-  
-    acceptEdit.addEventListener("click", () => closeEditor(true, parent, [[label, editContainer], [editBtn, acceptEdit], [delBtn, cancelBtn]]));
+    acceptEdit.addEventListener("click", () => document.getElementById("hiddenSubmitBtn").click())
+    editContainer.addEventListener("submit", e => {
+      e.preventDefault();
+      closeEditor(true, parent, [[label, editContainer], [editBtn, acceptEdit], [delBtn, cancelBtn]])
+    });
     cancelBtn.addEventListener("click", () => closeEditor(false, parent, [[label, editContainer], [editBtn, acceptEdit], [delBtn, cancelBtn]]));
   }
+
+
   
   function closeEditor(acceptChanges, parent, nodeArr) {
     const [originalNode, newNode] = nodeArr[0];
-    console.log(newNode)
     if (acceptChanges) {
       // originalNode.innerHTML = newNode.dataset.htmlStore.concat(newNode.firstChild.value);
       const newValue = newNode.firstChild.value;
@@ -65,6 +69,7 @@ function openEditor() {
     input.type = "text";
     input.value = textStore;
     input.classList.add(".edit-task-text");
+    input.required = true
 
     const date = document.createElement("input");
     date.type = "date";
@@ -84,11 +89,18 @@ function openEditor() {
     taskInput.appendChild(work);
     taskInput.appendChild(home);
 
-    const div = document.createElement("div");
-    div.classList.add("edit-task");
-    div.appendChild(input);
-    div.appendChild(date);
-    div.appendChild(taskInput);
-    div.dataset.textStore = textStore;  //
-    return div;
+    const submitBtn = document.createElement("button");  // making a submit button that the accept changes button will trigger onclick. accept changes button is sibling to the form so would have to change lots of css to have it inside the form.
+    submitBtn.type = "submit";
+    submitBtn.id = "hiddenSubmitBtn";
+    submitBtn.style.display = "none";
+    const form = document.createElement("form");
+    // form.action = "javascript:;";
+    // form.method = "POST";
+    form.classList.add("edit-task");
+    form.appendChild(input);
+    form.appendChild(date);
+    form.appendChild(taskInput);
+    form.appendChild(submitBtn);
+    form.dataset.textStore = textStore;  //
+    return form;
   }
