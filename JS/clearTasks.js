@@ -18,3 +18,18 @@ export const clearCompletedTasks = () => {
   const clearCompleted = document.querySelector("#clear-completed");
   clearCompleted.addEventListener("click", removeChecked);
 };
+
+const removeAll = () => {
+  const taskItems = document.querySelectorAll(".task-item");
+  const taskList = document.querySelector("#task-list");
+  taskItems.forEach((task) => {
+    taskList.removeChild(task);
+  });
+
+  toggleEmptyMessage();
+};
+
+export const clearAllTasks = () => {
+  const clearAll = document.querySelector("#clear-all");
+  clearAll.addEventListener("click", removeAll);
+};
