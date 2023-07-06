@@ -24,4 +24,19 @@ export const clearTasksTest = () => {
       `Expected: isToggleEmptyMessageCalled to return true Recieved:${isToggleEmptyMessageCalled}`
     );
   });
+  test("Clear All button should remove all tasks from the task list and call and call toggleEmptyMessage", () => {
+    clearAllTasks();
+
+    const taskItems = document.querySelectorAll(".task-item");
+    equal(
+      taskItems.length,
+      0,
+      `Expected All tasks removed from task list and taskItems length = 0. Recieved ${taskItems.length}`
+    );
+    equal(
+      isToggleEmptyMessageCalled,
+      true,
+      `Expected: isToggleEmptyMessageCalled to return true Recieved:${isToggleEmptyMessageCalled}`
+    );
+  });
 };
