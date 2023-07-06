@@ -7,4 +7,21 @@ export const clearTasksTest = () => {
   if (toggleEmptyMessage) {
     isToggleEmptyMessageCalled = true;
   }
+  test("Clear Completed button should remove all check marked tasks from the task list and call toggleEmptyMessage", () => {
+    clearCompletedTasks();
+    const completedTasks = document.querySelectorAll(
+      ".task-item input[type='checkbox']:checked"
+    );
+
+    equal(
+      completedTasks.length,
+      0,
+      `Expected All Completed tasks removed from task list and completedTasks length = 0. Recieved ${completedTasks.length}`
+    );
+    equal(
+      isToggleEmptyMessageCalled,
+      true,
+      `Expected: isToggleEmptyMessageCalled to return true Recieved:${isToggleEmptyMessageCalled}`
+    );
+  });
 };
