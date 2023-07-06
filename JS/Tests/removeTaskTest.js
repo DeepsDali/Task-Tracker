@@ -2,7 +2,7 @@ import { removeTask } from "../removeTask.js";
 import { addTask } from "../addTask.js";
 
 export const removeTaskTest = () => {
-  console.log("REMOVE BUTTON TESTS");
+  console.log("%cREMOVE BUTTON TESTS", "font-weight: bold; color:red");
   test("removeTask removes the parent element of button when pressed", () => {
     const textString = "delete button test";
     const taskList = document.getElementById("task-list");

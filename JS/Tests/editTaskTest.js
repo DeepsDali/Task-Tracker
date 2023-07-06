@@ -1,7 +1,8 @@
 import { getDisplayDate } from "../Helpers/getDisplayDate.js";
 
 export const editTaskTest = () => {
-  console.log("EDIT BUTTON TESTS");
+  console.log("%cEDIT BUTTON TESTS", "font-weight: bold; color:red");
+
   test("openEditor should replace checkbox label with an input of type text, an input of type date and a select input", () => {
     const textString = "open editor test";
     const taskList = document.getElementById("task-list");
@@ -42,7 +43,8 @@ export const editTaskTest = () => {
     )[0].parentElement; // find the new task div
     const preEditButtonCount = editDiv.querySelectorAll("button").length; // check number of buttons in div
     editDiv.querySelector(".editbtn").click(); // simulate click on edit button
-    const [submitButton, acceptButton, cancelButton] = editDiv.querySelectorAll("button"); // get both buttons
+    const [submitButton, acceptButton, cancelButton] =
+      editDiv.querySelectorAll("button"); // get both buttons
     const postEditButtonCount = editDiv.querySelectorAll("button").length; // check number of buttons in div
     equal(
       submitButton.style.display,
@@ -102,9 +104,14 @@ export const editTaskTest = () => {
     editDiv.querySelector(".edit-due-date").value = newDate;
     editDiv.querySelector(".edit-type").value = "work";
     editDiv.querySelector("button").click(); // simulate click on accept changes button
-    const textEditCheck = editDiv.querySelector(".checkbox-label").textContent.slice(14); // check text content of label and remove date section of text
-    const dateEditCheck = editDiv.querySelector(".checkbox-label").textContent.slice(6,12);
-    const taskTypeEditCheck = editDiv.querySelector(".checkbox-label").dataset.taskType;
+    const textEditCheck = editDiv
+      .querySelector(".checkbox-label")
+      .textContent.slice(14); // check text content of label and remove date section of text
+    const dateEditCheck = editDiv
+      .querySelector(".checkbox-label")
+      .textContent.slice(6, 12);
+    const taskTypeEditCheck =
+      editDiv.querySelector(".checkbox-label").dataset.taskType;
     equal(
       textEditCheck,
       newTextString,
@@ -127,7 +134,9 @@ export const editTaskTest = () => {
     const textString = "cancel button editor test";
     const newTextString = "new text string";
     const newDate = "2023-08-05";
-    const oldDateString = getDisplayDate(document.getElementById("due-date").value);
+    const oldDateString = getDisplayDate(
+      document.getElementById("due-date").value
+    );
     const taskList = document.getElementById("task-list");
     document.getElementById("addTask").value = textString;
     document.getElementById("submit-btn").click(); // adds new task to task list
@@ -139,9 +148,14 @@ export const editTaskTest = () => {
     editDiv.querySelector(".edit-due-date").value = newDate;
     editDiv.querySelector(".edit-type").value = "work";
     editDiv.querySelectorAll("button")[2].click(); // simulate click on cancel changes button
-    const editCheck = editDiv.querySelector(".checkbox-label").textContent.slice(14); // check text content of label
-    const dateEditCheck = editDiv.querySelector(".checkbox-label").textContent.slice(6,12);
-    const taskTypeEditCheck = editDiv.querySelector(".checkbox-label").dataset.taskType;
+    const editCheck = editDiv
+      .querySelector(".checkbox-label")
+      .textContent.slice(14); // check text content of label
+    const dateEditCheck = editDiv
+      .querySelector(".checkbox-label")
+      .textContent.slice(6, 12);
+    const taskTypeEditCheck =
+      editDiv.querySelector(".checkbox-label").dataset.taskType;
     equal(
       editCheck,
       textString,
