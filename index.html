@@ -32,26 +32,30 @@
           class="task-form stack-lg column"
         >
           <div class="stack-lg">
-            <label for="addTask"></label>
+            <label class="visually-hidden" for="addTask">Add Task:</label>
             <input
               id="addTask"
               name="addTask"
               type="text"
               required
               placeholder="Enter new task"
+              aria-label="Enter new task"
             />
           </div>
           <div class="row">
-            <select id="task-category" required>
+            <label class="visually-hidden" for="task-category">Category:</label>
+            <select id="task-category" required aria-label="Select category">
               <option value="work">Work</option>
               <option value="home">Home</option>
             </select>
+            <label class="visually-hidden" for="due-date">Due Date:</label>
             <input
               type="date"
               id="due-date"
               value="2023-06-30"
               min="2023-07-01"
               max="2023-08-31"
+              aria-label="Select due date"
             />
             <button type="submit" id="submit-btn" class="btn row">+</button>
           </div>
@@ -59,7 +63,9 @@
       </section>
       <section id="filterTasks-section" class="filter-tasks center column">
         <div id="clear-div" class="center">
-          <button id="clear-completed" class="clear-btn">Clear Completed</button>
+          <button id="clear-completed" class="clear-btn">
+            Clear Completed
+          </button>
           <button id="clear-all" class="clear-btn">Clear All</button>
         </div>
         <div id="filter-div" class="filters center column">
