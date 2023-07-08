@@ -16,12 +16,11 @@ export const addTask = () => {
   checkbox.name = "checkbox";
   checkbox.id = "checkbox";
   checkbox.className = "checkbox";
-  checkbox.addEventListener("click",filterNewTasks)
+  checkbox.addEventListener("click", filterNewTasks);
   taskItem.className = "task-item stack-lg row center";
   label.htmlFor = "checkbox";
   label.className = "checkbox-label";
   label.dataset.textStore = inputValue;
-  // label.textContent = inputValue;
 
   // Set task item background
   const taskCategorySelect = document.querySelector("#task-category");
@@ -31,7 +30,8 @@ export const addTask = () => {
       ? "rgba(6, 67, 199, 0.317)"
       : "rgba(57, 17, 79, 0.333)";
   label.dataset.taskType = selectedOption;
-  //Set Date
+
+  // Set Date
   const dueDate = document.querySelector("#due-date");
   const selectedDate = dueDate.value;
   const displayDate = getDisplayDate(selectedDate);
@@ -43,6 +43,20 @@ export const addTask = () => {
 
   deleteButton.classList.add("btn", "delbtn");
   deleteButton.innerHTML = "&#128465;";
+
+  // Accessibility attributes
+  checkbox.setAttribute("aria-labelledby", label.id);
+  checkbox.setAttribute(
+    "aria-describedby",
+    `${editButton.id} ${deleteButton.id}`
+  );
+  label.id = "label-" + Date.now(); // Generate a unique ID for each label
+  label.setAttribute("for", checkbox.id);
+  editButton.id = "edit-" + Date.now(); // Generate a unique ID for edit button
+  deleteButton.id = "delete-" + Date.now(); // Generate a unique ID for delete button
+  editButton.setAttribute("aria-label", "Edit");
+  deleteButton.setAttribute("aria-label", "Delete");
+
   // Append elements to the task item div
   taskItem.appendChild(checkbox);
   taskItem.appendChild(label);
