@@ -52,3 +52,6 @@ As a busy person, I want to:
 ### Design
 - Use CSS grid to create complex layouts
 - Use CSS grid to make layouts that adapt to the viewport size
+
+## Authored by
+[DeepsDali](https://github.com/DeepsDali) & [JamesESS](https://github.com/JamesESS)
