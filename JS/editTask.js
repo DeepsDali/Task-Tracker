@@ -33,8 +33,8 @@ function openEditor() {
     [acceptEdit, editBtn],
     [cancelBtn, delBtn],
   ]);
-  acceptEdit.addEventListener("click", () =>
-    document.getElementById("hiddenSubmitBtn").click()
+  acceptEdit.addEventListener("click", (e) =>
+    e.target.parentElement.querySelector(".hiddenSubmitBtn").click()
   );
   editContainer.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -122,7 +122,7 @@ function createTextInput(textStore, dateStore, taskType) {
 
   const submitBtn = document.createElement("button"); // making a submit button that the accept changes button will trigger onclick. accept changes button is sibling to the form so would have to change lots of css to have it inside the form.
   submitBtn.type = "submit";
-  submitBtn.id = "hiddenSubmitBtn";
+  submitBtn.classList.add("hiddenSubmitBtn");
   submitBtn.style.display = "none";
   submitBtn.setAttribute("aria-hidden", "true"); // Hide the button from accessibility tree
   const form = document.createElement("form");
